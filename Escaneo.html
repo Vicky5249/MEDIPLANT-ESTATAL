@@ -233,8 +233,8 @@ const URL = "https://teachablemachine.withgoogle.com/models/qd-PZZFyA/";        
                     labelContainer.appendChild(predictionElement);
              }
 
-    // Si la probabilidad es mayor o igual a 90%, guardamos el nombre de la clase
-    if (probability >= 90) {
+    // Si la probabilidad es mayor o igual a 80%, guardamos el nombre de la clase
+    if (probability >= 80) {
         highPrediction = prediction[i].className.toLowerCase(); // También convertir aquí a minúsculas
     }
 }
