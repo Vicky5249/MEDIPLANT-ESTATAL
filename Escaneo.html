@@ -279,10 +279,10 @@ const URL = "https://teachablemachine.withgoogle.com/models/ci_VGZfV7/";
          }, 5000); // 5000 milisegundos = 5 segundos
      } 
          else {
-             // Si no hay predicción alta o si todas las probabilidades son <= 89%
+             // Si no hay predicción alta o si todas las probabilidades son <= 74%
              setTimeout(() => {
              window.location.href = "error.html"; // Redirigimos a la página de error
-             }, 5000); // Redirigir después de 5 segundos
+             }, 30000); // Redirigir después de 30 segundos
           }
 
         }
