@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -190,7 +191,35 @@ const URL = "https://teachablemachine.withgoogle.com/models/ci_VGZfV7/";
 
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
             const facingMode = isMobile ? { exact: "environment" } : "user";
+            let stream; // Variable para almacenar el flujo de video
+        let track;  // Variable para la pista de video
 
+        async function activarFlash() {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: "environment", torch: true }
+                });
+
+                track = stream.getVideoTracks()[0];
+
+                // Intentar encender el flash si es compatible
+                const capabilities = track.getCapabilities();
+                if (capabilities.torch) {
+                    track.applyConstraints({ advanced: [{ torch: true }] });
+                } else {
+                    alert("Tu dispositivo no soporta el flash en la cámara.");
+                }
+            } catch (error) {
+                console.error("Error al acceder a la cámara:", error);
+            }
+        }
+
+        function apagarFlash() {
+            if (track) {
+                track.applyConstraints({ advanced: [{ torch: false }] });
+                track.stop(); // Detiene la cámara
+            }
+        }
             const constraints = {
                 video: {
                     facingMode: facingMode,
